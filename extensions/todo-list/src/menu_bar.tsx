@@ -21,7 +21,7 @@ export default function MenuBar() {
         <>
           <TodoList sectionKey="pinned" todos={todoSections["pinned"]} />
           <TodoList sectionKey="todo" todos={todoSections["todo"]} />
-          <TodoList sectionKey="completed" todos={todoSections["completed"]} />
+          <TodoList sectionKey="completed" todos={todoSections["completed"].slice(0, 9)} />
         </>
       ) : (
         <MenuBarExtra.Item title="No Todos" />

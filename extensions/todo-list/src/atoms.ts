@@ -14,6 +14,7 @@ export interface TodoItem {
   title: string;
   completed: boolean;
   timeAdded: number;
+  deadline?: Date;
 }
 
 const getInitialValue = () => {

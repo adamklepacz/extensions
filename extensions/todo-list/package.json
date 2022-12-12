@@ -8,6 +8,12 @@
   "license": "MIT",
   "commands": [
     {
+      "name": "add_todo_form",
+      "title": "Add todo",
+      "description": "Create a new todo item, set description and due date.",
+      "mode": "view"
+    },
+    {
       "name": "index",
       "title": "Manage Todo List",
       "description": "Create and delete items, mark them as completed and pin important tasks.",

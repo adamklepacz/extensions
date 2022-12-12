@@ -32,6 +32,27 @@ const ListActions = () => {
     await clearSearchBar();
     setTodoSections(_.cloneDeep(todoSections));
   };
+
+  const addTodoWithDueDate = async () => {
+    if (newTodoText.length === 0) {
+      await showToast(Toast.Style.Failure, "Empty todo", "Todo items cannot be empty.");
+      return;
+    }
+    todoSections.todo = [
+      ...insertIntoSection(
+        todoSections.todo,
+        {
+          title: newTodoText,
+          completed: false,
+          timeAdded: Date.now(),
+        },
+        compare
+      ),
+    ];
+    await clearSearchBar();
+    setTodoSections(_.cloneDeep(todoSections));
+  };
+
   const editTodo = async () => {
     if (!editing) return;
     if (newTodoText.length === 0) {
@@ -46,6 +67,7 @@ const ListActions = () => {
     setEditing(false);
     setSearchBarText("");
   };
+
   if (editing) {
     return (
       <ActionPanel>

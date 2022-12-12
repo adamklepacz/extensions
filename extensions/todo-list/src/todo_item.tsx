@@ -27,11 +27,15 @@ const SingleTodoItem = ({ item, idx, sectionKey }: { item: TodoItem; idx: number
   const datePart = dayjs(item.timeAdded).format("MMM D");
   const nowDatePart = dayjs(Date.now()).format("MMM D");
   const timePart = dayjs(item.timeAdded).format("h:mm A");
+  const dueDate = item.deadline ? dayjs(item.deadline).format("ddd h:mm") : null;
   const time = datePart === nowDatePart ? `at ${timePart}` : `on ${datePart}`;
+  const accessories = item.deadline ? [{ icon: Icon.Alarm, text: `${dueDate}` }] : null;
+
   return (
     <List.Item
       title={item.title}
       subtitle={`Added ${time}`}
+      accessories={accessories}
       icon={
         item.completed
           ? { source: Icon.Checkmark, tintColor: Color.Green }
@@ -54,6 +58,15 @@ const SingleTodoItem = ({ item, idx, sectionKey }: { item: TodoItem; idx: number
                 onAction={() => markCompleted()}
               />
             )}
+            <Action
+              title="Set Due Date"
+              icon={{ source: Icon.Calendar, tintColor: Color.Blue }}
+              onAction={() => {
+                setSearchMode(false);
+                editTodo();
+              }}
+              shortcut={{ modifiers: ["cmd"], key: "c" }}
+            />
             <Action
               title="Edit Todo"
               icon={{ source: Icon.Pencil, tintColor: Color.Orange }}
